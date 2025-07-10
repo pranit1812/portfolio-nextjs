@@ -28,8 +28,12 @@ try {
 // Fallback to in-memory rate limit store if Redis is not configured
 const rateLimitMap = new Map<string, { count: number; lastReset: number }>();
 const RATE_LIMIT = 5; // 5 questions per IP per day
+const GLOBAL_DAILY_LIMIT = 25; // 25 total questions per day for the entire app
 const WINDOW_MS = 1000 * 60 * 60 * 24; // 24 hours
 const REDIS_TTL = 60 * 60 * 24; // 24 hours in seconds
+
+// Global rate limit tracking
+let globalRateLimit = { count: 0, lastReset: Date.now() };
 
 type PortfolioChunk = {
   id: string;
@@ -238,6 +242,53 @@ function simulateEmbedding(text: string): number[] {
 }
 
 /**
+ * Check global daily limit for the entire application
+ */
+async function checkGlobalDailyLimit(): Promise<{ allowed: boolean; remaining: number }> {
+  const now = Date.now();
+  
+  // Use Redis if available for global count
+  if (redis) {
+    try {
+      const key = 'global_daily_limit';
+      
+      // Get current count or initialize
+      let count = await redis.incr(key);
+      
+      // Set expiry if this is a new key (resets at midnight)
+      if (count === 1) {
+        await redis.expire(key, REDIS_TTL);
+      }
+      
+      const remaining = Math.max(0, GLOBAL_DAILY_LIMIT - count);
+      return {
+        allowed: count <= GLOBAL_DAILY_LIMIT,
+        remaining
+      };
+    } catch (error) {
+      console.error('Redis error for global limit:', error);
+      // Fall back to in-memory if Redis fails
+    }
+  }
+  
+  // In-memory fallback for global limit
+  // Reset if 24 hours have passed
+  if (now - globalRateLimit.lastReset > WINDOW_MS) {
+    globalRateLimit.count = 0;
+    globalRateLimit.lastReset = now;
+  }
+  
+  // Increment global count
+  globalRateLimit.count++;
+  
+  const remaining = Math.max(0, GLOBAL_DAILY_LIMIT - globalRateLimit.count);
+  return {
+    allowed: globalRateLimit.count <= GLOBAL_DAILY_LIMIT,
+    remaining
+  };
+}
+
+/**
  * Check rate limit using Redis if available, with fallback to in-memory
  */
 async function checkRateLimit(ip: string): Promise<{ allowed: boolean; remaining: number }> {
@@ -299,13 +350,25 @@ export async function POST(req: NextRequest) {
       }, { status: 400 });
     }
     
-    // Check rate limit
+    // Check global daily limit first
+    const globalLimit = await checkGlobalDailyLimit();
+    
+    if (!globalLimit.allowed) {
+      return NextResponse.json({
+        error: 'We\'ve had many visitors today and have surpassed our daily limit of 25 questions. Please try again tomorrow when the limit resets!',
+        remaining: 0,
+        isGlobalLimit: true
+      }, { status: 429 });
+    }
+    
+    // Check per-user rate limit
     const { allowed, remaining } = await checkRateLimit(ip);
     
     if (!allowed) {
       return NextResponse.json({
         error: 'Rate limit exceeded. You can ask 5 questions per day. Please try again tomorrow.',
-        remaining: 0
+        remaining: 0,
+        isGlobalLimit: false
       }, { status: 429 });
     }
 
@@ -330,6 +393,7 @@ export async function POST(req: NextRequest) {
         question,
         context,
         remaining,
+        globalRemaining: globalLimit.remaining,
         totalChunks: portfolioChunks.length
       });
     }
@@ -349,7 +413,7 @@ If you don't know the answer based on the provided information, say so politely 
           'Authorization': `Bearer ${OPENAI_API_KEY}`,
         },
         body: JSON.stringify({
-          model: 'gpt-4',
+          model: 'gpt-4.1-nano',
           messages: [
             { role: 'system', content: systemPrompt },
             { role: 'user', content: question }
@@ -379,6 +443,7 @@ If you don't know the answer based on the provided information, say so politely 
         question,
         context, // for debugging
         remaining, // Return remaining questions count
+        globalRemaining: globalLimit.remaining, // Return global remaining count
         totalChunks: portfolioChunks.length // Total number of chunks for visualization
       });
     } catch (openaiError: any) {

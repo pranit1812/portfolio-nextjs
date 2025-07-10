@@ -34,6 +34,7 @@ export default function ChatWidget() {
   const [showRagDemo, setShowRagDemo] = useState(false);
   const [lastRagData, setLastRagData] = useState<RagData | null>(null);
   const [remainingQuestions, setRemainingQuestions] = useState(5);
+  const [globalRemaining, setGlobalRemaining] = useState(25);
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messageContainerRef = useRef<HTMLDivElement>(null);
@@ -77,6 +78,10 @@ export default function ChatWidget() {
       
       if (data.remaining !== undefined) {
         setRemainingQuestions(data.remaining);
+      }
+      
+      if (data.globalRemaining !== undefined) {
+        setGlobalRemaining(data.globalRemaining);
       }
       
       setLastRagData({
@@ -166,9 +171,14 @@ export default function ChatWidget() {
                   <div className="flex items-center gap-2">
                     <Brain className="text-white" size={20} />
                     <h3 className="font-bold">Pranit.AI</h3>
-                    <span className="bg-white/20 px-2 py-0.5 rounded-full text-xs">
-                      {remainingQuestions} questions left
-                    </span>
+                    <div className="flex gap-1">
+                      <span className="bg-white/20 px-2 py-0.5 rounded-full text-xs">
+                        You: {remainingQuestions}
+                      </span>
+                      <span className="bg-white/30 px-2 py-0.5 rounded-full text-xs">
+                        App: {globalRemaining}
+                      </span>
+                    </div>
                   </div>
                   <button
                     onClick={toggleRagDemo}
