@@ -1,22 +1,44 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronRight, Database, Globe, Cpu, MessageCircle, Smartphone, Cloud, Code, Zap, Brain, FileText, Users, Eye } from 'lucide-react';
 
+type SectionName = 'frontend' | 'backend' | 'data' | 'features';
+
+type ExpandedSections = {
+  [key in SectionName]: boolean;
+};
+
 const ArchitectureDesigner = () => {
-  const [expandedSections, setExpandedSections] = useState({
+  const [expandedSections, setExpandedSections] = useState<ExpandedSections>({
     frontend: true,
     backend: true,
     data: true,
     features: true
   });
 
-  const toggleSection = (section) => {
+  const toggleSection = (section: SectionName) => {
     setExpandedSections(prev => ({
       ...prev,
       [section]: !prev[section]
     }));
   };
 
-  const ComponentBox = ({ title, items, icon: Icon, color, section }) => (
+  const ComponentBox = ({
+    title,
+    items,
+    icon: Icon,
+    color,
+    section
+  }: {
+    title: string;
+    items: Array<{
+      name: string;
+      description: string;
+      tech?: string[];
+    }>;
+    icon: React.ElementType;
+    color: string;
+    section: SectionName;
+  }) => (
     <div className="bg-white/10 backdrop-blur-md rounded-xl border border-white/20 p-4 shadow-xl">
       <div 
         className="flex items-center justify-between cursor-pointer mb-3"
