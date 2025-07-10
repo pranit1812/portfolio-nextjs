@@ -1,57 +1,36 @@
-import Redis from 'ioredis';
+import { Redis } from '@upstash/redis';
 
-// Initialize Redis client
-// Check for Upstash Redis configuration first
-const upstashRedisUrl = process.env.UPSTASH_REDIS_URL;
-const upstashRedisToken = process.env.UPSTASH_REDIS_TOKEN;
+// Redis client for Upstash Redis
+let redis: Redis | null = null;
 
-// Fallback to generic Redis URL or localhost
-const redisUrl = process.env.REDIS_URL || 'redis://localhost:6379';
-
-// Create a Redis client instance
-let redis: Redis;
-
-// If Upstash Redis is configured, use it
-if (upstashRedisUrl && upstashRedisToken) {
-  console.log('Using Upstash Redis configuration');
-  redis = new Redis(upstashRedisUrl, {
-    password: upstashRedisToken,
-    tls: {
-      rejectUnauthorized: false
-    }
-  });
-} else {
-  // Otherwise use standard Redis configuration
-  console.log('Using standard Redis configuration');
-  redis = new Redis(redisUrl, {
-    // Optional: Configure reconnect strategy
-    reconnectOnError: (err) => {
-      const targetError = 'READONLY';
-      if (err.message.includes(targetError)) {
-        // Only reconnect when the error contains "READONLY"
-        return true;
-      }
-      return false;
-    },
-    retryStrategy: (times) => {
-      // Exponential backoff with a maximum of 10 seconds
-      const delay = Math.min(times * 50, 10000);
-      return delay;
-    },
-    // Optional: Configure connection timeout
-    connectTimeout: 10000,
-    // Optional: Configure max retries
-    maxRetriesPerRequest: 5,
-  });
+// Initialize Redis client only if valid configuration is provided
+try {
+  if (
+    process.env.UPSTASH_REDIS_URL &&
+    process.env.UPSTASH_REDIS_TOKEN &&
+    process.env.UPSTASH_REDIS_URL.startsWith('https://') &&
+    !process.env.UPSTASH_REDIS_URL.includes('your-upstash-redis-url')
+  ) {
+    redis = new Redis({
+      url: process.env.UPSTASH_REDIS_URL,
+      token: process.env.UPSTASH_REDIS_TOKEN,
+    });
+    console.log('Redis client initialized successfully with Upstash');
+  } else {
+    console.log('Redis not configured, falling back to in-memory storage');
+  }
+} catch (error) {
+  console.error('Failed to initialize Redis client:', error);
+  redis = null;
 }
 
-// Handle Redis connection events
-redis.on('connect', () => {
-  console.log('Connected to Redis');
-});
-
-redis.on('error', (error) => {
-  console.error('Redis connection error:', error);
-});
-
+// Export Redis instance (can be null if not configured)
 export default redis;
+
+// Export a helper function to check if Redis is available
+export const isRedisAvailable = (): boolean => {
+  return redis !== null;
+};
+
+// Export Redis types for TypeScript
+export type { Redis };

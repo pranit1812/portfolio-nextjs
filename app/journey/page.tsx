@@ -7,17 +7,30 @@ import GlassCard from '@/components/ui/glass-card';
 
 export default function JourneyPage() {
   return (
-    <div className="py-8 md:py-12 px-4">
-      <GlassCard className="w-full max-w-5xl mx-auto p-6 md:p-10" intensity="medium" borderGlow>
-        <h1 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-blue-700 via-teal-600 to-green-600 bg-clip-text text-transparent text-center">My Journey</h1>
-        <p className="text-base md:text-lg text-gray-700 mb-6 md:mb-8 text-center">From education to startups - explore my professional path and milestones.</p>
+    <div className="min-h-screen py-6 md:py-12 px-4 lg:px-6">
+      <div className="w-full max-w-6xl mx-auto">
+        {/* Header Section */}
+        <div className="text-center mb-8 md:mb-12">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-blue-700 via-teal-600 to-green-600 bg-clip-text text-transparent">
+            My Journey
+          </h1>
+          <p className="text-base md:text-lg lg:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+            From education to startups - explore my professional path and milestones.
+          </p>
+        </div>
         
-        {/* Pass both education and experience data to the timeline component */}
-        <StartupTimeline
-          experiences={portfolioData.experience}
-          education={portfolioData.education}
-        />
-      </GlassCard>
+        {/* Timeline Section */}
+        <GlassCard 
+          className="w-full p-4 md:p-8 lg:p-10" 
+          intensity="medium" 
+          borderGlow
+        >
+          <StartupTimeline
+            experiences={portfolioData.experience}
+            education={portfolioData.education}
+          />
+        </GlassCard>
+      </div>
     </div>
   );
 }

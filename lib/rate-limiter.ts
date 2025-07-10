@@ -1,25 +1,13 @@
-import { RateLimiterRedis } from 'rate-limiter-flexible';
-import redis from './redis';
 import { NextRequest, NextResponse } from 'next/server';
+import redis, { isRedisAvailable } from './redis';
 
-// Configure rate limiter options
-const rateLimiterOptions = {
-  // Use the Redis instance
-  storeClient: redis,
-  // Key prefix for Redis
-  keyPrefix: 'ratelimit:',
-  // Number of points (requests)
-  points: 10, // 10 requests
-  // Per duration in seconds
-  duration: 60, // per 1 minute
-  // Custom error message
-  customMessage: 'Too many requests, please try again later.',
-  // Block duration in seconds if consumed more than points
-  blockDuration: 60, // Block for 1 minute if exceeded
-};
+// Fallback to in-memory rate limit store if Redis is not configured
+const rateLimitMap = new Map<string, { count: number; lastReset: number }>();
 
-// Create a rate limiter instance
-export const rateLimiter = new RateLimiterRedis(rateLimiterOptions);
+// Rate limiting configuration
+const RATE_LIMIT = 10; // 10 requests
+const WINDOW_MS = 60 * 1000; // per 1 minute
+const REDIS_TTL = 60; // 60 seconds in Redis
 
 /**
  * Rate limiting middleware for Next.js API routes
@@ -33,25 +21,70 @@ export async function rateLimiterMiddleware(
 ): Promise<NextResponse | null> {
   try {
     // Get IP address or use custom identifier
-    const ip = identifier || req.ip || '127.0.0.1';
+    const ip = identifier || req.ip || req.headers.get('x-forwarded-for') || '127.0.0.1';
+    const key = `ratelimit:${ip}`;
     
-    // Consume points
-    await rateLimiter.consume(ip);
+    let count: number;
+    let isLimited = false;
+
+    if (isRedisAvailable() && redis) {
+      // Use Redis for rate limiting
+      try {
+        // Get current count
+        const currentCount = await redis.get(key);
+        count = currentCount ? parseInt(currentCount.toString()) + 1 : 1;
+        
+        // Set new count with TTL
+        await redis.setex(key, REDIS_TTL, count);
+        
+        isLimited = count > RATE_LIMIT;
+      } catch (redisError) {
+        console.error('Redis error, falling back to in-memory:', redisError);
+        // Fall back to in-memory if Redis fails
+        isLimited = checkInMemoryRateLimit(ip);
+      }
+    } else {
+      // Use in-memory rate limiting
+      isLimited = checkInMemoryRateLimit(ip);
+    }
+    
+    if (isLimited) {
+      console.warn(`Rate limit exceeded for ${ip}`);
+      return NextResponse.json(
+        { error: 'Too many requests, please try again later.' },
+        { status: 429, headers: { 'Retry-After': '60' } }
+      );
+    }
     
     // If successful (not rate limited), return null to continue
     return null;
   } catch (error) {
-    // If rate limit exceeded
-    if (error instanceof Error) {
-      console.warn(`Rate limit exceeded for ${req.ip || 'unknown IP'}: ${error.message}`);
-    }
-    
-    // Return rate limit exceeded response
-    return NextResponse.json(
-      { error: 'Too many requests, please try again later.' },
-      { status: 429, headers: { 'Retry-After': '60' } }
-    );
+    console.error('Rate limiter error:', error);
+    // If there's any error, allow the request to continue
+    return null;
   }
+}
+
+/**
+ * In-memory rate limiting fallback
+ */
+function checkInMemoryRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const userLimit = rateLimitMap.get(ip);
+  
+  if (!userLimit || now - userLimit.lastReset > WINDOW_MS) {
+    // Reset or create new limit
+    rateLimitMap.set(ip, { count: 1, lastReset: now });
+    return false;
+  }
+  
+  if (userLimit.count >= RATE_LIMIT) {
+    return true;
+  }
+  
+  // Increment count
+  userLimit.count++;
+  return false;
 }
 
 /**

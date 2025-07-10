@@ -13,6 +13,7 @@ interface TimelineItem {
   keyMetrics: string[];
   technologies: string[];
   isEducation?: boolean;
+  isStatus?: boolean;
 }
 
 interface StartupTimelineProps {
@@ -33,171 +34,197 @@ export default function StartupTimeline({ experiences, education = [] }: Startup
     title: edu.degree,
     duration: edu.duration,
     businessImpact: `Focus areas: ${edu.focus_areas.join(', ')}`,
-    achievements: [`GPA: ${edu.gpa}`],
+    achievements: [`GPA: ${edu.gpa}`, `Location: ${edu.location}`],
     keyMetrics: [
       edu.location,
       edu.focus_areas[0],
       edu.focus_areas[1] || '',
       edu.focus_areas[2] || ''
-    ],
+    ].filter(Boolean),
     technologies: edu.focus_areas,
-    isEducation: true
+    isEducation: true,
+    isStatus: false
   }));
 
   // Add "open to opportunities" status node
   const statusNode: TimelineItem = {
-    id: "status-uk-london",
-    company: "Open to Opportunities",
-    title: "UK, London Area",
-    duration: "",
-    businessImpact: "Currently seeking new roles in the UK, London area. Let's connect!",
-    achievements: [],
-    keyMetrics: ["Available", "Consulting", "Full-time", "London"],
+    id: "status-europe-uk",
+    company: "Open to AI Developer Opportunities",
+    title: "Europe and UK",
+    duration: "Current",
+    businessImpact: "Currently seeking AI Developer roles in Europe and UK (visa sponsorship required). Let's connect!",
+    achievements: ["Available for immediate start", "Open to consulting and full-time roles", "Visa sponsorship required"],
+    keyMetrics: ["Available", "AI/ML", "Europe & UK", "Visa Support"],
     technologies: [],
-    isEducation: false
+    isEducation: false,
+    isStatus: true
   };
 
   // Combine and sort all items chronologically (newest first)
   const timelineData: TimelineItem[] = [
     statusNode,
     ...[
-      ...educationItems,
       ...allExperiences.map(exp => ({
         id: exp.id,
         company: exp.company,
         title: exp.title,
         duration: exp.duration,
-        businessImpact: exp.business_impact,
-        achievements: exp.achievements?.map((a: any) => a.description) || [],
+        businessImpact: exp.business_impact || exp.summary || '',
+        achievements: exp.achievements?.map((a: any) => a.description || a) || [],
         keyMetrics: exp.company === "HyperWater.ai" ? [
           "90% accuracy rate",
           "8x cost reduction",
           "10k+ documents processed",
           "Zero to revenue achieved"
-        ] : [
+        ] : exp.company === "RoomieHub" ? [
           "20+ engineers led",
-          "50% match improvement",
+          "50% match improvement", 
           "Thousands of users",
           "40% retention increase"
-        ],
-        technologies: exp.skills_used || []
-      }))
+        ] : [],
+        technologies: exp.skills_used || [],
+        isEducation: false,
+        isStatus: false
+      })),
+      ...educationItems
     ].sort((a, b) => {
+      // Custom sorting: status first, then by year (newest first)
+      if (a.isStatus) return -1;
+      if (b.isStatus) return 1;
+      
       // Extract years for sorting (newest first)
-      const aYear = parseInt(a.duration.split(' - ')[0].split('/')[1] || '0');
-      const bYear = parseInt(b.duration.split(' - ')[0].split('/')[1] || '0');
+      const aYear = parseInt((a.duration.match(/\d{4}/) || ['0'])[0]);
+      const bYear = parseInt((b.duration.match(/\d{4}/) || ['0'])[0]);
       return bYear - aYear;
     })
   ];
 
+  const getItemColor = (item: TimelineItem) => {
+    if (item.isStatus) return 'bg-gradient-to-r from-blue-500 to-blue-600';
+    if (item.isEducation) return 'bg-gradient-to-r from-green-500 to-green-600';
+    if (item.company.includes('HyperWater')) return 'bg-gradient-to-r from-purple-500 to-purple-600';
+    if (item.company.includes('Roomie')) return 'bg-gradient-to-r from-teal-500 to-teal-600';
+    return 'bg-gradient-to-r from-blue-500 to-blue-600';
+  };
+
+  const getDotColor = (item: TimelineItem) => {
+    if (item.isStatus) return 'border-blue-500 bg-blue-500';
+    if (item.isEducation) return 'border-green-500 bg-green-500';
+    if (item.company.includes('HyperWater')) return 'border-purple-500 bg-purple-500';
+    if (item.company.includes('Roomie')) return 'border-teal-500 bg-teal-500';
+    return 'border-blue-500 bg-blue-500';
+  };
+
   return (
-    <div className="relative py-8 flex justify-center">
-      {/* Vertical Timeline Line */}
-      <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-1.5 bg-gradient-to-b from-blue-500 via-teal-500 to-green-500 rounded-full z-0" style={{ transform: 'translateX(-50%)' }} />
+    <div className="relative max-w-5xl mx-auto">
+      {/* Timeline line - positioned for better mobile/desktop experience */}
+      <div className="absolute left-6 md:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-teal-500 to-green-500"></div>
       
-      <div className="flex flex-col items-center space-y-12 relative z-10 w-full max-w-5xl mx-auto">
-        {/* Centered "Open to Opportunities" card */}
-        <div className="flex justify-center w-full px-4">
-          <div className="w-full max-w-md md:max-w-2xl">
-            <GlassCard
-              className="p-5 md:p-6 w-full"
-              intensity="medium"
-              borderGlow
-              interactive
-            >
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-                <span className="text-sm font-medium text-gray-500">{timelineData[0].title}</span>
-              </div>
-              <h3 className="text-xl font-bold mb-2 bg-gradient-to-r from-blue-700 via-teal-600 to-green-600 bg-clip-text text-transparent">{timelineData[0].company}</h3>
-              <p className="text-gray-700 mb-4">{timelineData[0].businessImpact}</p>
-              <div className="grid grid-cols-2 gap-2 mb-2">
-                {timelineData[0].keyMetrics.map((metric, i) => (
-                  <div key={i} className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg p-2 text-center shadow-sm">
-                    <p className="text-xs text-blue-700 font-medium">{metric}</p>
-                  </div>
-                ))}
-              </div>
-            </GlassCard>
-          </div>
-        </div>
-        
-        {/* Timeline items - vertical on mobile, alternating on desktop */}
-        {timelineData.slice(1).map((item, index) => (
-          <div key={item.id} className="w-full flex flex-col md:flex-row items-start md:items-center justify-center relative">
+      <div className="space-y-8">
+        {timelineData.map((item, index) => (
+          <div key={item.id} className="relative">
             {/* Timeline dot */}
-            <div className="absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-white border-2 border-blue-500 z-10" style={{ transform: 'translateX(-50%)', marginTop: '1.5rem' }}></div>
+            <div className={`absolute left-4 md:left-6 w-4 h-4 rounded-full border-2 bg-white ${getDotColor(item)} shadow-lg z-10`}></div>
             
-            {/* Desktop: Alternating left/right cards */}
-            <div className={`w-full md:w-1/2 ${index % 2 === 0 ? 'md:pr-8 md:text-right' : 'md:pl-8 md:ml-auto'} pl-12 md:pl-0`}>
-              <div className="relative max-w-md w-full mx-auto md:mx-0 md:ml-auto">
-                <GlassCard
-                  className="p-5 md:p-6 w-full"
-                  intensity="medium"
-                  interactive
-                  hoverEffect
-                  borderGlow
-                  onClick={() => setSelectedItem(selectedItem === item.id ? null : item.id)}
-                >
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className={`w-2.5 h-2.5 rounded-full ${
-                      item.isEducation ? 'bg-green-500' :
-                      item.company.includes('HyperWater') ? 'bg-blue-500' :
-                      item.company.includes('Roomie') ? 'bg-teal-500' :
-                      'bg-green-500'
-                    }`}></div>
-                    <span className="text-sm font-medium text-gray-500">{item.duration}</span>
+            {/* Content card */}
+            <div className="ml-12 md:ml-16">
+              <GlassCard
+                className={`p-6 cursor-pointer transition-all duration-300 hover:scale-[1.02] ${
+                  item.isStatus ? 'ring-2 ring-blue-500/50' : ''
+                }`}
+                intensity="medium"
+                borderGlow={item.isStatus}
+                interactive
+                onClick={() => setSelectedItem(selectedItem === item.id ? null : item.id)}
+              >
+                {/* Header */}
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+                  <div className="flex items-center gap-3 mb-2 sm:mb-0">
+                    <div className={`w-3 h-3 rounded-full ${getItemColor(item)}`}></div>
+                    <span className="text-sm font-medium text-gray-600">{item.duration}</span>
+                    {item.isEducation && (
+                      <span className="px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full">Education</span>
+                    )}
+                    {item.isStatus && (
+                      <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full">Available</span>
+                    )}
                   </div>
-                  <h3 className="text-xl font-bold mb-2 bg-gradient-to-r from-blue-700 via-teal-600 to-green-600 bg-clip-text text-transparent">{item.company}</h3>
-                  <h4 className="text-lg text-blue-600 mb-3">{item.title}</h4>
-                  <p className="text-gray-700 mb-4">{item.businessImpact}</p>
-                  
-                  {/* Key Metrics */}
-                  <div className="grid grid-cols-2 gap-2 mb-3">
+                </div>
+
+                {/* Company and Title */}
+                <h3 className="text-xl md:text-2xl font-bold mb-2 bg-gradient-to-r from-blue-700 via-teal-600 to-green-600 bg-clip-text text-transparent">
+                  {item.company}
+                </h3>
+                <h4 className="text-lg text-blue-600 mb-3 font-medium">{item.title}</h4>
+                
+                {/* Business Impact */}
+                <p className="text-gray-700 mb-4 leading-relaxed">{item.businessImpact}</p>
+                
+                {/* Key Metrics Grid */}
+                {item.keyMetrics.length > 0 && (
+                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
                     {item.keyMetrics.map((metric, i) => (
-                      <div key={i} className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg p-2 text-center shadow-sm">
-                        <p className="text-xs text-blue-700 font-medium">{metric}</p>
+                      <div key={i} className="bg-white/30 backdrop-blur-sm border border-white/40 rounded-lg p-3 text-center shadow-sm">
+                        <p className="text-sm text-blue-700 font-medium">{metric}</p>
                       </div>
                     ))}
                   </div>
-                  
-                  <div className="text-sm text-blue-600 hover:text-blue-800 transition-colors">
-                    {selectedItem === item.id ? 'Click to collapse' : 'Click to expand details →'}
+                )}
+                
+                {/* Expand/Collapse indicator */}
+                <div className="flex items-center justify-between">
+                  <div className="text-sm text-blue-600 hover:text-blue-800 transition-colors font-medium">
+                    {selectedItem === item.id ? '↑ Click to collapse' : '↓ Click to expand details'}
                   </div>
-
-                  {/* Expanded Details */}
-                  {selectedItem === item.id && (
-                    <div className="mt-4 p-4 w-full bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
-                      <div className="space-y-5">
-                        <div>
-                          <h5 className="text-blue-700 font-medium mb-3">Key Achievements</h5>
-                          <div className="space-y-2">
-                            {item.achievements.map((achievement, i) => (
-                              <div key={i} className="flex items-start gap-2">
-                                <p className="text-sm text-gray-800">{achievement}</p>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                        <div>
-                          <h5 className="text-blue-700 font-medium mb-3">Technologies Used</h5>
-                          <div className="flex flex-wrap gap-2">
-                            {item.technologies.map((tech, i) => (
-                              <span key={i} className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs text-blue-700 border border-white/30">
-                                {tech}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
+                  {item.technologies.length > 0 && (
+                    <div className="text-xs text-gray-500">
+                      {item.technologies.length} technologies
                     </div>
                   )}
-                </GlassCard>
-              </div>
+                </div>
+
+                {/* Expanded Details */}
+                {selectedItem === item.id && (
+                  <div className="mt-6 p-5 bg-white/20 backdrop-blur-sm rounded-xl border border-white/30 space-y-6">
+                    {/* Achievements */}
+                    {item.achievements.length > 0 && (
+                      <div>
+                        <h5 className="text-blue-700 font-semibold mb-3 flex items-center gap-2">
+                          <span>🏆</span> Key Achievements
+                        </h5>
+                        <div className="space-y-2">
+                          {item.achievements.map((achievement, i) => (
+                            <div key={i} className="flex items-start gap-3">
+                              <div className="w-2 h-2 rounded-full bg-blue-500 mt-2 flex-shrink-0"></div>
+                              <p className="text-sm text-gray-800 leading-relaxed">{achievement}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    
+                    {/* Technologies */}
+                    {item.technologies.length > 0 && (
+                      <div>
+                        <h5 className="text-blue-700 font-semibold mb-3 flex items-center gap-2">
+                          <span>🛠️</span> Technologies & Skills
+                        </h5>
+                        <div className="flex flex-wrap gap-2">
+                          {item.technologies.map((tech, i) => (
+                            <span 
+                              key={i} 
+                              className="px-3 py-1.5 bg-white/30 backdrop-blur-sm rounded-full text-sm text-blue-700 border border-white/40 font-medium"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </GlassCard>
             </div>
-            
-            {/* Empty div for alternating layout on desktop */}
-            <div className="hidden md:block md:w-1/2"></div>
           </div>
         ))}
       </div>
