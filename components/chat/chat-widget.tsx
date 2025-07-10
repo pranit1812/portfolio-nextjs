@@ -170,22 +170,22 @@ export default function ChatWidget() {
                 <div className="flex items-center justify-between w-full">
                   <div className="flex items-center gap-2">
                     <Brain className="text-white" size={20} />
-                    <h3 className="font-bold">Pranit.AI</h3>
+                    <h3 className="font-bold text-white">Pranit.AI</h3>
                     <div className="flex gap-1">
-                      <span className="bg-white/20 px-2 py-0.5 rounded-full text-xs">
+                    <span className="bg-white/20 px-2 py-0.5 rounded-full text-xs text-white">
                         You: {remainingQuestions}
                       </span>
-                      <span className="bg-white/30 px-2 py-0.5 rounded-full text-xs">
+                      <span className="bg-white/30 px-2 py-0.5 rounded-full text-xs text-white">
                         App: {globalRemaining}
-                      </span>
+                    </span>
                     </div>
                   </div>
                   <button
                     onClick={toggleRagDemo}
                     className="bg-white/20 hover:bg-white/30 text-white px-2 sm:px-3 py-1 rounded-lg text-xs sm:text-sm font-medium transition-colors flex items-center gap-1"
                   >
-                    <Info size={14} className="hidden sm:inline" />
-                    <span className="whitespace-nowrap">See How It Works</span>
+                    <Info size={14} className="hidden sm:inline text-white" />
+                    <span className="whitespace-nowrap text-white">See How It Works</span>
                   </button>
                 </div>
               </div>

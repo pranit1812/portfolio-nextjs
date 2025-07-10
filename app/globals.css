@@ -28,3 +28,27 @@
   stroke-dashoffset: 1500;
   animation: dash 3s ease-in-out forwards;
 }
+
+/* Text readability improvements */
+@layer base {
+  /* High contrast text hierarchy */
+  h1, h2, h3, h4, h5, h6 {
+    color: rgb(17, 24, 39); /* gray-900 for maximum contrast */
+    font-weight: 700;
+  }
+  
+  /* Body text with improved contrast */
+  p {
+    color: rgb(31, 41, 55); /* gray-800 for better readability */
+  }
+  
+  /* Secondary text */
+  .text-secondary {
+    color: rgb(55, 65, 81); /* gray-700 */
+  }
+  
+  /* Text shadows for glass backgrounds */
+  .text-on-glass {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+}

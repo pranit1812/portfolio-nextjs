@@ -53,7 +53,7 @@ export default function ContactPage() {
           <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-teal-700 to-gray-900 bg-clip-text text-transparent">
             Let's Connect
           </h1>
-          <p className="text-xl text-gray-700 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-800 max-w-2xl mx-auto font-medium">
             Ready to build something amazing with AI? I'd love to hear about your project and explore how we can work together.
           </p>
         </div>
@@ -117,7 +117,7 @@ export default function ContactPage() {
 
             <GlassCard className="p-8" intensity="light" interactive>
               <h3 className="text-xl font-bold text-gray-900 mb-4">What I Can Help With</h3>
-              <ul className="space-y-3 text-gray-700">
+              <ul className="space-y-3 text-gray-800 font-medium">
                 <li className="flex items-center space-x-3">
                   <span className="text-teal-600">•</span>
                   <span>AI/ML Strategy & Implementation</span>
@@ -146,7 +146,7 @@ export default function ContactPage() {
             <h3 className="text-xl font-bold text-gray-900 mb-6">Quick Message</h3>
             <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="name" className="block text-sm font-semibold text-gray-800 mb-2">
                   Your Name
                 </label>
                 <input
@@ -161,7 +161,7 @@ export default function ContactPage() {
               </div>
               
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="email" className="block text-sm font-semibold text-gray-800 mb-2">
                   Your Email
                 </label>
                 <input
@@ -176,7 +176,7 @@ export default function ContactPage() {
               </div>
               
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="message" className="block text-sm font-semibold text-gray-800 mb-2">
                   Message
                 </label>
                 <textarea
@@ -209,7 +209,7 @@ export default function ContactPage() {
         <div className="text-center mt-16">
           <GlassCard className="p-8" intensity="light" interactive borderGlow>
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Ready to Start?</h2>
-            <p className="text-gray-700 mb-6">
+            <p className="text-gray-800 mb-6 font-medium">
               Whether you're looking to implement AI solutions, need technical leadership, or want to discuss innovative projects, I'm here to help.
             </p>
             <div className="flex flex-wrap justify-center gap-4">

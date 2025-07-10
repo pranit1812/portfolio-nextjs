@@ -162,9 +162,9 @@ const RAGVisualization: React.FC<RAGVisualizationProps> = ({ isOpen, onClose, ra
               <header className="bg-gradient-to-r from-blue-700 to-teal-600 p-4 text-white flex justify-between items-center">
                 <div className="flex items-center gap-2">
                   <Lightbulb className="text-yellow-300" size={20} />
-                  <h2 className="font-bold text-xl">How Retrieval-Augmented Generation (RAG) Works</h2>
+                  <h2 className="font-bold text-xl text-white">How Retrieval-Augmented Generation (RAG) Works</h2>
                   {isPlaceholder && (
-                    <span className="bg-yellow-500/20 text-yellow-200 px-2 py-0.5 rounded-full text-xs">
+                    <span className="bg-yellow-500/20 text-white px-2 py-0.5 rounded-full text-xs">
                       Demo Mode
                     </span>
                   )}

@@ -78,7 +78,7 @@ export default function StartupTimeline({ experiences, education = [] }: Startup
           "Zero to revenue achieved"
         ] : exp.company === "RoomieHub" ? [
           "20+ engineers led",
-          "50% match improvement", 
+          "50% match improvement",
           "Thousands of users",
           "40% retention increase"
         ] : [],
@@ -128,20 +128,20 @@ export default function StartupTimeline({ experiences, education = [] }: Startup
             
             {/* Content card */}
             <div className="ml-12 md:ml-16">
-              <GlassCard
+                <GlassCard
                 className={`p-6 cursor-pointer transition-all duration-300 hover:scale-[1.02] ${
                   item.isStatus ? 'ring-2 ring-blue-500/50' : ''
                 }`}
-                intensity="medium"
+                  intensity="medium"
                 borderGlow={item.isStatus}
-                interactive
-                onClick={() => setSelectedItem(selectedItem === item.id ? null : item.id)}
-              >
+                  interactive
+                  onClick={() => setSelectedItem(selectedItem === item.id ? null : item.id)}
+                >
                 {/* Header */}
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
                   <div className="flex items-center gap-3 mb-2 sm:mb-0">
                     <div className={`w-3 h-3 rounded-full ${getItemColor(item)}`}></div>
-                    <span className="text-sm font-medium text-gray-600">{item.duration}</span>
+                    <span className="text-sm font-semibold text-gray-700">{item.duration}</span>
                     {item.isEducation && (
                       <span className="px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full">Education</span>
                     )}
@@ -158,8 +158,8 @@ export default function StartupTimeline({ experiences, education = [] }: Startup
                 <h4 className="text-lg text-blue-600 mb-3 font-medium">{item.title}</h4>
                 
                 {/* Business Impact */}
-                <p className="text-gray-700 mb-4 leading-relaxed">{item.businessImpact}</p>
-                
+                <p className="text-gray-800 mb-4 leading-relaxed font-medium">{item.businessImpact}</p>
+                  
                 {/* Key Metrics Grid */}
                 {item.keyMetrics.length > 0 && (
                   <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
@@ -181,50 +181,50 @@ export default function StartupTimeline({ experiences, education = [] }: Startup
                       {item.technologies.length} technologies
                     </div>
                   )}
-                </div>
+                  </div>
 
-                {/* Expanded Details */}
-                {selectedItem === item.id && (
+                  {/* Expanded Details */}
+                  {selectedItem === item.id && (
                   <div className="mt-6 p-5 bg-white/20 backdrop-blur-sm rounded-xl border border-white/30 space-y-6">
                     {/* Achievements */}
                     {item.achievements.length > 0 && (
-                      <div>
+                        <div>
                         <h5 className="text-blue-700 font-semibold mb-3 flex items-center gap-2">
                           <span>🏆</span> Key Achievements
                         </h5>
-                        <div className="space-y-2">
-                          {item.achievements.map((achievement, i) => (
+                          <div className="space-y-2">
+                            {item.achievements.map((achievement, i) => (
                             <div key={i} className="flex items-start gap-3">
                               <div className="w-2 h-2 rounded-full bg-blue-500 mt-2 flex-shrink-0"></div>
                               <p className="text-sm text-gray-800 leading-relaxed">{achievement}</p>
-                            </div>
-                          ))}
+                              </div>
+                            ))}
+                          </div>
                         </div>
-                      </div>
                     )}
                     
                     {/* Technologies */}
                     {item.technologies.length > 0 && (
-                      <div>
+                        <div>
                         <h5 className="text-blue-700 font-semibold mb-3 flex items-center gap-2">
                           <span>🛠️</span> Technologies & Skills
                         </h5>
-                        <div className="flex flex-wrap gap-2">
-                          {item.technologies.map((tech, i) => (
+                          <div className="flex flex-wrap gap-2">
+                            {item.technologies.map((tech, i) => (
                             <span 
                               key={i} 
                               className="px-3 py-1.5 bg-white/30 backdrop-blur-sm rounded-full text-sm text-blue-700 border border-white/40 font-medium"
                             >
-                              {tech}
-                            </span>
-                          ))}
+                                {tech}
+                              </span>
+                            ))}
                         </div>
                       </div>
                     )}
-                  </div>
-                )}
-              </GlassCard>
-            </div>
+                    </div>
+                  )}
+                </GlassCard>
+              </div>
           </div>
         ))}
       </div>

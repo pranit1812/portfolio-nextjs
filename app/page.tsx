@@ -101,8 +101,8 @@ export default function HomePage() {
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-teal-700 to-gray-900 bg-clip-text text-transparent break-words max-w-full md:max-w-4xl mx-auto">
           {personalInfo.name}
         </h1>
-        <h2 className="text-2xl md:text-4xl mb-8 text-teal-600 font-semibold">{personalInfo.title}</h2>
-        <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-12 leading-relaxed">{personalInfo.tagline}</p>
+        <h2 className="text-2xl md:text-4xl mb-8 text-teal-700 font-semibold">{personalInfo.title}</h2>
+        <p className="text-xl text-gray-800 max-w-3xl mx-auto mb-12 leading-relaxed font-medium">{personalInfo.tagline}</p>
         
         <div className="flex flex-wrap justify-center gap-4 mb-16">
           {personalInfo.highlighted_achievements.map((achievement, index) => (
@@ -113,7 +113,7 @@ export default function HomePage() {
               borderGlow={index % 2 === 0}
               interactive
             >
-              <p className="text-sm text-gray-800 font-medium">{achievement}</p>
+              <p className="text-sm text-gray-900 font-semibold">{achievement}</p>
             </GlassCard>
           ))}
         </div>
@@ -130,7 +130,7 @@ export default function HomePage() {
             >
               <div className="text-4xl mb-4">🎯</div>
               <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-teal-600 transition-colors">Pranit.AI</h3>
-              <p className="text-gray-700">Ask me any questions about my resume and projects and get a detailed answer back.</p>
+              <p className="text-gray-800 font-medium">Ask me any questions about my resume and projects and get a detailed answer back.</p>
             </GlassCard>
           </Link>
 
@@ -143,7 +143,7 @@ export default function HomePage() {
             >
               <div className="text-4xl mb-4">🚀</div>
               <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-teal-600 transition-colors">My Journey</h3>
-              <p className="text-gray-700">From education to startups - explore my professional path and milestones.</p>
+              <p className="text-gray-800 font-medium">From education to startups - explore my professional path and milestones.</p>
             </GlassCard>
           </Link>
 
@@ -196,7 +196,7 @@ export default function HomePage() {
             >
               <div className="text-4xl mb-4">📧</div>
               <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-teal-600 transition-colors">Get In Touch</h3>
-              <p className="text-gray-700">Let's discuss your next AI project</p>
+              <p className="text-gray-800 font-medium">Let's discuss your next AI project</p>
             </GlassCard>
           </Link>
         </div>

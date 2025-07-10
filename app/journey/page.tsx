@@ -14,7 +14,7 @@ export default function JourneyPage() {
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-blue-700 via-teal-600 to-green-600 bg-clip-text text-transparent">
             My Journey
           </h1>
-          <p className="text-base md:text-lg lg:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg lg:text-xl text-gray-800 max-w-3xl mx-auto leading-relaxed font-medium">
             From education to startups - explore my professional path and milestones.
           </p>
         </div>

@@ -23,7 +23,7 @@ export default function AiMatcherPage() {
               Pranit.AI
             </h1>
             
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-800 max-w-3xl mx-auto font-medium">
               Ask me anything about my experience, projects, or skills and get detailed answers powered by RAG technology.
             </p>
           </div>
