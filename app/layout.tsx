@@ -33,27 +33,18 @@ export default function RootLayout({
         </div>
         {/* Apple-style Liquid Glass Navigation Bar */}
         <div className="sticky top-4 z-20 px-4">
-          <GlassCard
-            className="rounded-full border border-white/30 shadow-lg mx-auto max-w-5xl"
-            intensity="heavy"
-            borderGlow
-          >
-            <div className="px-6 py-3">
-              <div className="flex items-center justify-between">
-                <Link href="/" className="text-xl font-bold bg-gradient-to-r from-blue-700 via-teal-500 to-green-500 bg-clip-text text-transparent">{personalInfo.name}</Link>
-                <MobileNavigation
-                  links={[
-                    { href: "/ai-matcher", label: "AI Matcher" },
-                    { href: "/journey", label: "Journey" },
-                    { href: "/experience", label: "Experience" },
-                    { href: "/projects", label: "Projects" },
-                    { href: "/skills", label: "Skills" },
-                    { href: "/contact", label: "Contact" }
-                  ]}
-                />
-                
-                {/* Desktop navigation */}
-                <div className="hidden md:flex space-x-1">
+          <div className="relative">
+            <GlassCard
+              className="rounded-full border border-white/30 shadow-lg mx-auto max-w-5xl"
+              intensity="heavy"
+              borderGlow
+            >
+              <div className="px-6 py-3">
+                <div className="flex items-center justify-between">
+                  <Link href="/" className="text-xl font-bold bg-gradient-to-r from-blue-700 via-teal-500 to-green-500 bg-clip-text text-transparent">{personalInfo.name}</Link>
+                  <div className="flex items-center">
+                    {/* Desktop navigation */}
+                    <div className="hidden md:flex space-x-1">
                   {[
                     { href: "/ai-matcher", label: "AI Matcher" },
                     { href: "/journey", label: "Journey" },
@@ -70,10 +61,24 @@ export default function RootLayout({
                       {link.label}
                     </Link>
                   ))}
+                    </div>
+                    
+                    {/* Mobile navigation */}
+                    <MobileNavigation
+                      links={[
+                        { href: "/ai-matcher", label: "AI Matcher" },
+                        { href: "/journey", label: "Journey" },
+                        { href: "/experience", label: "Experience" },
+                        { href: "/projects", label: "Projects" },
+                        { href: "/skills", label: "Skills" },
+                        { href: "/contact", label: "Contact" }
+                      ]}
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-          </GlassCard>
+            </GlassCard>
+          </div>
           
         </div>
         {/* Main Content */}

@@ -34,31 +34,33 @@ export default function MobileNavigation({ links }: MobileNavigationProps) {
         )}
       </button>
       
-      {/* Mobile navigation menu */}
-      {isOpen && (
-        <div className="mt-2 md:hidden">
-          <GlassCard
-            className="rounded-xl border border-white/30 shadow-lg mx-auto"
-            intensity="medium"
-            borderGlow
-          >
-            <div className="py-2 px-4">
-              <div className="flex flex-col space-y-1">
-                {links.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="px-4 py-3 rounded-lg text-gray-700 hover:text-teal-600 hover:bg-white/30 transition-all font-medium text-sm"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
+      {/* Mobile navigation menu - dropdown style */}
+      <div
+        className={`absolute right-0 top-full mt-2 w-48 md:hidden transition-all duration-200 ease-in-out ${
+          isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'
+        }`}
+      >
+        <GlassCard
+          className="rounded-xl border border-white/30 shadow-lg"
+          intensity="medium"
+          borderGlow
+        >
+          <div className="py-2">
+            <div className="flex flex-col">
+              {links.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="px-4 py-3 text-gray-700 hover:text-teal-600 hover:bg-white/30 transition-all font-medium text-sm"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ))}
             </div>
-          </GlassCard>
-        </div>
-      )}
+          </div>
+        </GlassCard>
+      </div>
     </>
   );
 }
