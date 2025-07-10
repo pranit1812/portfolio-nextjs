@@ -127,7 +127,7 @@ export default function ChatWidget() {
     <>
       {/* Chat Toggle Button */}
       <motion.button
-        className="fixed bottom-6 right-6 z-50 p-4 rounded-full bg-blue-600 text-white shadow-xl hover:bg-blue-700 transition-colors ring-4 ring-blue-300 ring-opacity-50"
+        className="fixed bottom-6 right-6 z-50 p-3 sm:p-4 rounded-full bg-blue-600 text-white shadow-xl hover:bg-blue-700 transition-colors ring-4 ring-blue-300 ring-opacity-50"
         onClick={toggleChat}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
@@ -157,31 +157,33 @@ export default function ChatWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 50, scale: 0.9 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-24 right-6 z-40 w-full max-w-md"
+            className="fixed bottom-24 right-6 z-40 w-[95%] max-w-md sm:w-full"
           >
             <GlassCard className="overflow-hidden rounded-xl shadow-2xl flex flex-col" intensity="medium" borderGlow>
               {/* Fixed Header */}
               <div className="bg-gradient-to-r from-blue-600/90 to-teal-500/90 backdrop-blur-md p-4 text-white flex items-center justify-between border-b border-white/20">
-                <div className="flex items-center gap-2">
-                  <Brain className="text-white" size={20} />
-                  <h3 className="font-bold">Pranit.AI</h3>
-                  <span className="bg-white/20 px-2 py-0.5 rounded-full text-xs">
-                    {remainingQuestions} questions left
-                  </span>
+                <div className="flex items-center justify-between w-full">
+                  <div className="flex items-center gap-2">
+                    <Brain className="text-white" size={20} />
+                    <h3 className="font-bold">Pranit.AI</h3>
+                    <span className="bg-white/20 px-2 py-0.5 rounded-full text-xs">
+                      {remainingQuestions} questions left
+                    </span>
+                  </div>
+                  <button
+                    onClick={toggleRagDemo}
+                    className="bg-white/20 hover:bg-white/30 text-white px-2 sm:px-3 py-1 rounded-lg text-xs sm:text-sm font-medium transition-colors flex items-center gap-1"
+                  >
+                    <Info size={14} className="hidden sm:inline" />
+                    <span className="whitespace-nowrap">See How It Works</span>
+                  </button>
                 </div>
-                <button
-                  onClick={toggleRagDemo}
-                  className="bg-white/20 hover:bg-white/30 text-white px-3 py-1 rounded-lg text-sm font-medium transition-colors flex items-center gap-1"
-                >
-                  <Info size={14} />
-                  See How It Works
-                </button>
               </div>
 
               {/* Scrollable Message Area */}
               <div 
                 ref={messageContainerRef}
-                className="overflow-y-auto p-4 space-y-4 bg-white/10 backdrop-blur-sm max-h-[400px] min-h-[100px]"
+                className="overflow-y-auto p-4 space-y-4 bg-white/10 backdrop-blur-sm max-h-[50vh] sm:max-h-[400px] min-h-[100px]"
               >
                 {/* Welcome Message - Compact horizontal layout */}
                 {messages.length === 0 && (
