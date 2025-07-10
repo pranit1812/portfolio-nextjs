@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
-import GlassCard from './glass-card';
 
 interface MobileNavigationProps {
   links: Array<{
@@ -15,52 +14,40 @@ interface MobileNavigationProps {
 export default function MobileNavigation({ links }: MobileNavigationProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
   return (
-    <>
-      {/* Mobile menu button */}
-      <button 
-        className="md:hidden flex items-center"
-        onClick={toggleMenu}
+    <div className="md:hidden relative z-50">
+      <button
+        className="flex items-center justify-center p-3 rounded-full bg-blue-600 hover:bg-blue-700 transition-colors border-2 border-white/50 shadow-lg"
+        onClick={() => {
+          const newState = !isOpen;
+          console.log('Mobile menu toggled:', newState);
+          setIsOpen(newState);
+        }}
         aria-label="Toggle mobile menu"
       >
         {isOpen ? (
-          <X className="h-6 w-6 text-gray-700" />
+          <X className="h-6 w-6 text-white" />
         ) : (
-          <Menu className="h-6 w-6 text-gray-700" />
+          <Menu className="h-6 w-6 text-white" />
         )}
       </button>
       
-      {/* Mobile navigation menu - dropdown style */}
-      <div
-        className={`absolute right-0 top-full mt-2 w-48 md:hidden transition-all duration-200 ease-in-out ${
-          isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'
-        }`}
-      >
-        <GlassCard
-          className="rounded-xl border border-white/30 shadow-lg"
-          intensity="medium"
-          borderGlow
-        >
+      {isOpen && (
+        <div className="absolute right-0 top-full mt-2 w-64 bg-white/95 backdrop-blur-md rounded-lg shadow-xl border-2 border-blue-300 overflow-hidden z-50">
           <div className="py-2">
-            <div className="flex flex-col">
-              {links.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="px-4 py-3 text-gray-700 hover:text-teal-600 hover:bg-white/30 transition-all font-medium text-sm"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
+            {links.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="block px-4 py-4 text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition-colors font-medium text-base"
+                onClick={() => setIsOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
           </div>
-        </GlassCard>
-      </div>
-    </>
+        </div>
+      )}
+    </div>
   );
 }
