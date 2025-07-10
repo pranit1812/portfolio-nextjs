@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
@@ -6,6 +6,7 @@ import portfolioData from '../pranit-portfolio-json.json'
 import Link from 'next/link'
 import ChatWidget from '../components/chat/chat-widget'
 import GlassCard from '../components/ui/glass-card'
+import { Menu, X } from 'lucide-react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,6 +21,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   const { personalInfo } = portfolioData
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   return (
     <html lang="en">
       <body className={`${inter.className} min-h-screen bg-gradient-to-br from-blue-50 via-teal-50 to-green-50 relative`}>
@@ -40,6 +42,20 @@ export default function RootLayout({
             <div className="px-6 py-3">
               <div className="flex items-center justify-between">
                 <Link href="/" className="text-xl font-bold bg-gradient-to-r from-blue-700 via-teal-500 to-green-500 bg-clip-text text-transparent">{personalInfo.name}</Link>
+                {/* Mobile menu button */}
+                <button
+                  className="md:hidden flex items-center"
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  aria-label="Toggle mobile menu"
+                >
+                  {mobileMenuOpen ? (
+                    <X className="h-6 w-6 text-gray-700" />
+                  ) : (
+                    <Menu className="h-6 w-6 text-gray-700" />
+                  )}
+                </button>
+                
+                {/* Desktop navigation */}
                 <div className="hidden md:flex space-x-1">
                   {[
                     { href: "/ai-matcher", label: "AI Matcher" },
@@ -61,6 +77,39 @@ export default function RootLayout({
               </div>
             </div>
           </GlassCard>
+          
+          {/* Mobile navigation menu */}
+          {mobileMenuOpen && (
+            <div className="mt-2 md:hidden">
+              <GlassCard
+                className="rounded-xl border border-white/30 shadow-lg mx-auto"
+                intensity="medium"
+                borderGlow
+              >
+                <div className="py-2 px-4">
+                  <div className="flex flex-col space-y-1">
+                    {[
+                      { href: "/ai-matcher", label: "AI Matcher" },
+                      { href: "/journey", label: "Journey" },
+                      { href: "/experience", label: "Experience" },
+                      { href: "/projects", label: "Projects" },
+                      { href: "/skills", label: "Skills" },
+                      { href: "/contact", label: "Contact" }
+                    ].map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        className="px-4 py-3 rounded-lg text-gray-700 hover:text-teal-600 hover:bg-white/30 transition-all font-medium text-sm"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </GlassCard>
+            </div>
+          )}
         </div>
         {/* Main Content */}
         <div className="relative z-10">
