@@ -3,17 +3,17 @@
 import React, { useState, useRef } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { 
-  Lightbulb, 
-  Code, 
-  Rocket, 
-  TrendingUp, 
+  Lightbulb,
+  Code,
+  Rocket,
+  TrendingUp,
   DollarSign,
   Users,
   Zap,
   Building,
   Home,
   Brain,
-  ChartBar
+  BarChart
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Experience } from "@/types/portfolio";
@@ -280,7 +280,7 @@ function TimelineItem({
         {/* Business Value Highlight */}
         <div className="mb-4 p-3 rounded-lg bg-green-500/10 border border-green-500/20">
           <div className="flex items-center gap-2 mb-1">
-            <ChartBar className="h-4 w-4 text-green-400" />
+            <BarChart className="h-4 w-4 text-green-400" />
             <span className="text-sm font-medium text-green-300">Business Impact</span>
           </div>
           <p className="text-sm text-green-200">{milestone.businessValue}</p>
