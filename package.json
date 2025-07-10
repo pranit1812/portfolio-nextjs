@@ -1,0 +1,38 @@
+{
+  "name": "pranit-ai-portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.16.1",
+    "@stagewise/toolbar": "^0.5.0",
+    "@tailwindcss/typography": "^0.5.16",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@upstash/redis": "^1.35.1",
+    "autoprefixer": "^10.4.21",
+    "buffer": "^6.0.3",
+    "clsx": "^2.0.0",
+    "framer-motion": "^10.16.16",
+    "lucide-react": "^0.303.0",
+    "next": "14.0.4",
+    "openai": "^4.24.7",
+    "postcss": "^8.5.6",
+    "react": "^18",
+    "react-dom": "^18",
+    "redis": "^4.6.12",
+    "tailwind-merge": "^2.2.0",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5"
+  },
+  "devDependencies": {
+    "eslint": "^8",
+    "eslint-config-next": "14.0.4"
+  }
+}

@@ -1,0 +1,462 @@
+{
+  "gen_ai_statement": "Entrepreneurial AI Engineer with 3 years of developing GenAI solutions in high-growth startups, having led 2 companies from concept to revenue generation. I combine strong technical expertise in RAG systems, knowledge graphs, and custom RAG solutions with exceptional client-facing skills to translate business requirements into scalable AI solutions. Proven track record of reducing operational costs by 85% whilst maintaining high accuracy and leading cross-functional teams of 20+ engineers. Seeking challenging and innovative AI Developer opportunities in London with visa sponsorship.",
+  "personalInfo": {
+    "name": "Pranit Sehgal",
+    "title": "Senior AI Developer & GenAI Startup Leader",
+    "tagline": "GenAI Innovator: Led 2 startups from concept to revenue, architected scalable RAG and knowledge graph solutions, and delivered measurable business value in high-growth environments.",
+    "bio": "Entrepreneurial AI Engineer with 3 years of experience building GenAI solutions in startups. Led 2 companies from concept to revenue, architected multimodal RAG systems, and delivered business value through technical leadership and client-facing skills. Proven record of reducing costs by 85% while maintaining high accuracy, and leading teams of 20+ engineers. Open to AI Developer opportunities in London, UK.",
+    "location": "London, United Kingdom",
+    "contact": {
+      "phone": "+16232844052",
+      "email": "pranitsehgal@gmail.com",
+      "linkedin": "https://linkedin.com/in/pranitsehgal",
+      "github": "https://github.com/pranit1812",
+      "website": "https://pranitsehgal.com"
+    },
+    "availability": "Open to AI Developer opportunities in London, UK (visa sponsorship required)",
+    "highlighted_achievements": [
+      "Led 2 AI startups from concept to revenue generation, architecting GenAI systems end-to-end.",
+      "Reduced operational costs by 85% while maintaining high accuracy in production RAG pipelines.",
+      "Managed and scaled cross-functional teams of 20+ engineers in high-growth AI environments.",
+      "Built and deployed production knowledge graph and RAG-powered systems for 10k+ users.",
+      "Established £150k+ in advertising revenue for RoomieHub within 8 months."
+    ]
+  },
+  "experience": [
+    {
+      "id": "hyperwater_ai",
+      "title": "Senior AI Developer (Founding Team)",
+      "company": "HyperWater.ai",
+      "duration": "11/2024 - Present",
+      "location": "Remote",
+      "type": "Startup Leadership",
+      "summary": "Founding engineer for construction-tech startup, joining pre-revenue as core technical member responsible for building the company's flagship AI product from concept to market launch and establishing revenue streams within 6 months. Architected innovative multimodal RAG system using Knowledge Graph-based RAG models to interpret architectural drawings and construction documents, implementing strategic on-demand vision processing during retrieval rather than at ingestion, reducing processing costs by 85% when handling large document sets (4000+ pages). Led client demos, market research, and technical team of 8.",
+      "skills_used": [
+        "Knowledge Graph RAG", "Vision Models", "Custom RAG", "RLHF", "Cost Optimization", "Python", "Team Leadership", "Client Demos"
+      ],
+      "technologies": {
+        "ai_frameworks": ["Microsoft GraphRAG", "LangChain", "Custom RAG", "Vision Models"],
+        "cloud_platforms": ["AWS"],
+        "databases": ["Neo4j", "Vector Databases"],
+        "programming": ["Python"],
+        "tools": ["Analytics Dashboards", "Benchmarking Tools"]
+      },
+      "achievements": [
+        {
+          "description": "Architected multimodal RAG system with on-demand vision processing, reducing costs by 85% for large document sets.",
+          "business_value": "Enabled scalable, cost-effective document analysis for construction industry."
+        },
+        {
+          "description": "Led client demos and market research, translating technical capabilities into business value for industry leaders.",
+          "business_value": "Directly contributed to early revenue generation and product-market fit."
+        },
+        {
+          "description": "Promoted to Senior AI Developer within 4 months, leading a team of 8 developers.",
+          "business_value": "Scaled technical team and mentored junior engineers."
+        },
+        {
+          "description": "Developed intelligent bid recommendation system with custom RAG and RLHF, improving user satisfaction and platform adoption.",
+          "business_value": "Enhanced user engagement and increased platform adoption."
+        }
+      ],
+      "business_impact": "Revenue-generating GenAI solutions for the construction industry; reduced costs by 85%; established product-market fit.",
+      "leadership_role": "Senior AI Developer, Team Lead (8 developers)"
+    },
+    {
+      "id": "roomiehub",
+      "title": "Software Developer",
+      "company": "RoomieHub",
+      "duration": "06/2024 - 06/2025",
+      "location": "Remote",
+      "type": "Startup Leadership",
+      "summary": "Transformed early-stage app into revenue-generating platform, expanding from GenAI implementation to full technical leadership, contributing to £150k+ in advertising revenue within 8 months. Architected GenAI messaging system with locally deployed LLaMA models on AWS Lambda, built automated CI/CD pipelines, and developed backend infrastructure for 10k+ users.",
+      "skills_used": [
+        "LLaMA", "AWS Lambda", "AWS S3", "React.js", "CI/CD", "Cosine Similarity", "Content Moderation", "Backend Development", "Advertising Partnerships"
+      ],
+      "technologies": {
+        "ai_frameworks": ["LLaMA", "Hugging Face"],
+        "cloud_platforms": ["AWS Lambda", "AWS S3", "AWS Rekognition", "EC2"],
+        "frontend": ["React.js"],
+        "databases": ["S3"],
+        "programming": ["Python", "JavaScript"],
+        "tools": ["Docker", "GitHub Actions", "Expo"]
+      },
+      "achievements": [
+        {
+          "description": "Architected GenAI messaging system with LLaMA models on AWS Lambda, increasing user engagement by 45%.",
+          "business_value": "Improved match success rates and user retention."
+        },
+        {
+          "description": "Built automated CI/CD pipelines, reducing deployment time by 70%.",
+          "business_value": "Enabled rapid feature releases and accelerated time-to-market."
+        },
+        {
+          "description": "Developed backend infrastructure for 10k+ users, enabling seamless scaling.",
+          "business_value": "Supported platform growth and stability."
+        },
+        {
+          "description": "Created custom cosine similarity matching algorithm, improving compatibility scores by 35%.",
+          "business_value": "Increased user retention and reduced churn."
+        },
+        {
+          "description": "Implemented AWS Rekognition content moderation, blocking 1,200+ inappropriate uploads monthly.",
+          "business_value": "Enhanced platform safety and increased user trust scores by 50%."
+        },
+        {
+          "description": "Established advertising partnerships, generating £150k+ in revenue.",
+          "business_value": "Proved business model viability."
+        }
+      ],
+      "business_impact": "Transformed RoomieHub into a revenue-generating platform; improved user engagement, retention, and platform safety.",
+      "leadership_role": "Technical Lead, Backend & AI"
+    },
+    {
+      "id": "kalpataru",
+      "title": "Data & Automation Engineer",
+      "company": "Kalpataru Power Transmission Limited",
+      "duration": "01/2022 - 08/2022",
+      "location": "India",
+      "type": "Enterprise",
+      "summary": "Developed IT support chatbot and automated data pipelines for real-time monitoring of transmission line performance and substation equipment health. Implemented predictive maintenance models to forecast equipment failures and improve operational efficiency.",
+      "skills_used": [
+        "Python", "NLP", "Yellow.ai", "Random Forest", "ARIMA", "Data Pipeline", "Sensor Data", "Predictive Maintenance"
+      ],
+      "technologies": {
+        "ai_frameworks": ["Scikit-Learn", "NLP", "Random Forest", "ARIMA"],
+        "platforms": ["Yellow.ai"],
+        "programming": ["Python"],
+        "visualization": ["Matplotlib", "Seaborn"],
+        "databases": ["Sensor Data Systems"],
+        "tools": ["Data Pipelines"]
+      },
+      "achievements": [
+        {
+          "description": "Developed IT support chatbot, automating ticket creation and reducing error resolution time by 30%.",
+          "business_value": "Company-wide adoption and improved IT support efficiency."
+        },
+        {
+          "description": "Built automated data pipelines for real-time monitoring and predictive maintenance.",
+          "business_value": "Reduced equipment downtime and prevented costly outages."
+        }
+      ],
+      "business_impact": "Automated IT support and improved power transmission efficiency.",
+      "leadership_role": "Technical contributor"
+    },
+    {
+      "id": "mse_india",
+      "title": "Data Analyst",
+      "company": "Metropolitan Stock Exchange of India",
+      "duration": "05/2021 - 12/2021",
+      "location": "India",
+      "type": "Finance",
+      "summary": "Supported ARIMA model development and fine-tuning for commodity trading forecasting. Integrated real-time data feeds and automated ETL pipelines for accurate trading dashboards and compliance reports.",
+      "skills_used": [
+        "ARIMA", "ETL Pipelines", "Data Visualization", "Financial Modeling", "Python", "SQL"
+      ],
+      "technologies": {
+        "ai_frameworks": ["ARIMA Models"],
+        "tools": ["ETL Pipelines", "Data Visualization"],
+        "databases": ["Financial Data Systems"],
+        "programming": ["Python", "SQL"]
+      },
+      "achievements": [
+        {
+          "description": "Supported ARIMA model development and data preprocessing for commodity trading forecasting.",
+          "business_value": "Improved forecasting accuracy for trading decisions."
+        },
+        {
+          "description": "Integrated real-time data feeds and automated ETL pipelines.",
+          "business_value": "Ensured accurate dashboards and timely compliance reports."
+        }
+      ],
+      "business_impact": "Improved financial forecasting and reporting for commodity trading.",
+      "leadership_role": "Data analyst and contributor"
+    },
+    {
+      "id": "starter_labs",
+      "title": "Data Scientist - I",
+      "company": "The Starter Labs",
+      "duration": "05/2020 - 07/2021",
+      "location": "India",
+      "type": "Agency",
+      "summary": "Optimised digital advertising spend using XGBoost and Random Forest models to improve ROAS on Facebook and Google Ads by ~20%. Developed customer segmentation and NLP sentiment analysis models for campaign optimisation and brand monitoring.",
+      "skills_used": [
+        "XGBoost", "Random Forest", "Customer Segmentation", "NLP", "Sentiment Analysis", "ROAS Optimization", "CLTV"
+      ],
+      "technologies": {
+        "ai_frameworks": ["XGBoost", "Random Forest", "NLP"],
+        "platforms": ["Facebook Ads", "Google Ads"],
+        "programming": ["Python"],
+        "tools": ["Sentiment Analysis", "Customer Segmentation"]
+      },
+      "achievements": [
+        {
+          "description": "Optimised ad budgets using XGBoost and Random Forest, improving ROAS by ~20%.",
+          "business_value": "Directly contributed to client revenue growth and campaign efficiency."
+        },
+        {
+          "description": "Developed customer segmentation models for personalised campaigns, increasing CLTV by 10%.",
+          "business_value": "Improved retention and loyalty strategies."
+        },
+        {
+          "description": "Deployed NLP sentiment analysis models for brand monitoring and campaign optimisation.",
+          "business_value": "Provided actionable insights for client brand positioning."
+        }
+      ],
+      "business_impact": "Improved advertising ROI and customer lifetime value.",
+      "leadership_role": "Data scientist and strategic contributor"
+    }
+  ],
+  "projects": [
+    {
+      "id": "mcp_coding_workflow",
+      "title": "MCP for AI-Enhanced Coding Workflow",
+      "duration": "2025",
+      "description": "Developed a Model Context Protocol (MCP) integration connecting Cursor IDE with Gemini CLI, leveraging Gemini's 1M context window for complex coding tasks and research queries.",
+      "type": "Personal/Recent",
+      "skills_used": [
+        "MCP", "Gemini CLI", "Cursor IDE", "AI Coding Workflow"
+      ],
+      "technologies": {
+        "frameworks": ["Gemini CLI", "Cursor IDE"],
+        "ai_tools": ["MCP"],
+        "programming": ["Python", "JavaScript"]
+      },
+      "achievements": [
+        "Significantly improved development workflow efficiency for complex coding and research tasks."
+      ],
+      "business_value": "Demonstrates advanced AI integration for developer productivity."
+    },
+    {
+      "id": "rhythm_password",
+      "title": "Rhythm Password - Keystroke Dynamics Authentication",
+      "duration": "Fall 2023",
+      "description": "Developed 'Rhythm Lock' authentication system merging keystroke dynamics with TensorFlow Lite-based ML, achieving 92% accuracy in user authentication based on typing rhythm.",
+      "type": "Academic/Edge ML",
+      "skills_used": [
+        "TensorFlow Lite", "Keras", "Keystroke Dynamics", "Edge ML", "Arduino"
+      ],
+      "technologies": {
+        "frameworks": ["TensorFlow Lite", "Keras"],
+        "ai_tools": ["Keystroke Dynamics"],
+        "hardware": ["Arduino"]
+      },
+      "achievements": [
+        "Achieved 92% accuracy in real-time user authentication.",
+        "Optimised Keras model for edge deployment on Arduino hardware."
+      ],
+      "business_value": "Demonstrates creative approach to biometric security and edge ML."
+    },
+    {
+      "id": "healthcare_chatbot",
+      "title": "Healthcare AI Chatbot",
+      "duration": "08/2024 - 09/2024",
+      "description": "Web-based health chatbot using Django, LangGraph, and RAG with Neo4j knowledge graph.",
+      "type": "Personal/Portfolio",
+      "skills_used": [
+        "Django", "LangGraph", "RAG", "Neo4j", "spaCy", "Multi-agent Architecture"
+      ],
+      "technologies": {
+        "frameworks": ["Django", "LangGraph"],
+        "ai_tools": ["RAG", "spaCy", "Multi-agent Systems"],
+        "databases": ["Neo4j"],
+        "programming": ["Python"]
+      },
+      "achievements": [
+        "Built context-aware interactions for real-time health inquiries",
+        "Implemented appointment scheduling and medication information",
+        "Used medical entity extraction with spaCy"
+      ],
+      "business_value": "Demonstrates healthcare AI capabilities",
+      "demo_available": true,
+      "github_link": "https://github.com/pranitsehgal/healthcare-chatbot"
+    },
+    {
+      "id": "resume_parser",
+      "title": "Resume Parser AI Tool",
+      "duration": "07/2024 - 08/2024",
+      "description": "Freelance project processing 2,000-3,000 resumes using BERT-based model",
+      "type": "Freelance",
+      "skills_used": [
+        "Streamlit", "BERT", "Neo4j", "LLM", "Cypher Queries", "Knowledge Graphs"
+      ],
+      "technologies": {
+        "frameworks": ["Streamlit", "BERT"],
+        "databases": ["Neo4j"],
+        "ai_tools": ["LLM", "Knowledge Graphs"],
+        "programming": ["Python", "Cypher"]
+      },
+      "achievements": [
+        "Processed 2,000-3,000 resumes with BERT-based relationship extraction",
+        "Built Neo4j knowledge graph with natural language querying",
+        "Converted user queries to Cypher queries with LLM"
+      ],
+      "business_value": "Automated resume processing at scale",
+      "demo_available": true,
+      "client_impact": "Processed thousands of resumes for HR automation"
+    }
+  ],
+  "education": [
+    {
+      "degree": "M.S in Computer Engineering",
+      "institution": "Arizona State University",
+      "location": "USA",
+      "duration": "08/2022 - 05/2024",
+      "gpa": "3.57/4.00",
+      "focus_areas": ["Machine Learning", "AI Systems", "Software Engineering"]
+    },
+    {
+      "degree": "Bachelor's in Computer Science",
+      "institution": "NMIMS University",
+      "location": "India",
+      "duration": "06/2018 - 06/2022",
+      "gpa": "3.59/4.00",
+      "focus_areas": ["Computer Science Fundamentals", "Data Structures", "Algorithms"]
+    }
+  ],
+  "publications": [
+    {
+      "title": "Gradient Boosting Approach for Sentiment Analysis",
+      "venue": "IEEE Bombay Section Signature Conference",
+      "type": "Conference Paper",
+      "link": "https://ieeexplore.ieee.org/document/9876543",
+      "technologies": ["Gradient Boosting", "Sentiment Analysis", "NLP"],
+      "impact": "Implemented Gradient Boosting for Sentiment Analysis in job recommendation systems, achieving 78.08% accuracy and 0.819 AUC by mining Twitter and Indeed data, demonstrating the potential of NLP techniques for candidate profiling during recruitment."
+    }
+  ],
+  "technical_skills": {
+    "programming_languages": [
+      {"name": "Python", "level": "Expert", "icon": "python-logo.svg"},
+      {"name": "SQL", "level": "Advanced", "icon": "sql-logo.svg"},
+      {"name": "JavaScript", "level": "Advanced", "icon": "javascript-logo.svg"},
+      {"name": "Java", "level": "Intermediate", "icon": "java-logo.svg"},
+      {"name": "C/C++", "level": "Intermediate", "icon": "cpp-logo.svg"},
+      {"name": "Golang", "level": "Intermediate", "icon": "go-logo.svg"}
+    ],
+    "ai_ml_frameworks": [
+      {"name": "Microsoft GraphRAG", "level": "Expert", "icon": "microsoft-logo.svg"},
+      {"name": "LangChain", "level": "Expert", "icon": "langchain-logo.svg"},
+      {"name": "LangGraph", "level": "Expert", "icon": "langgraph-logo.svg"},
+      {"name": "Hugging Face", "level": "Expert", "icon": "huggingface-logo.svg"},
+      {"name": "Custom RAG Solutions", "level": "Expert"},
+      {"name": "Knowledge Graphs", "level": "Expert"},
+      {"name": "Agentic Workflows", "level": "Advanced"},
+      {"name": "PyTorch", "level": "Advanced", "icon": "pytorch-logo.svg"},
+      {"name": "TensorFlow", "level": "Advanced", "icon": "tensorflow-logo.svg"},
+      {"name": "Keras", "level": "Advanced", "icon": "keras-logo.svg"},
+      {"name": "Scikit-Learn", "level": "Advanced", "icon": "sklearn-logo.svg"},
+      {"name": "XGBoost", "level": "Advanced"}
+    ],
+    "cloud_platforms": [
+      {"name": "AWS Lambda", "level": "Expert", "icon": "aws-lambda-logo.svg"},
+      {"name": "AWS S3", "level": "Expert", "icon": "aws-s3-logo.svg"},
+      {"name": "AWS EC2", "level": "Advanced", "icon": "aws-ec2-logo.svg"},
+      {"name": "AWS Rekognition", "level": "Advanced", "icon": "aws-rekognition-logo.svg"}
+    ],
+    "databases": [
+      {"name": "Neo4j", "level": "Expert", "icon": "neo4j-logo.svg"},
+      {"name": "Vector Databases", "level": "Advanced", "icon": "vector-db-logo.svg"},
+      {"name": "PostgreSQL", "level": "Advanced", "icon": "postgresql-logo.svg"}
+    ],
+    "tools_platforms": [
+      {"name": "Docker", "level": "Advanced", "icon": "docker-logo.svg"},
+      {"name": "Kubernetes", "level": "Intermediate", "icon": "kubernetes-logo.svg"},
+      {"name": "Linux/Unix", "level": "Advanced", "icon": "linux-logo.svg"},
+      {"name": "Yellow.ai", "level": "Advanced", "icon": "yellow-ai-logo.svg"},
+      {"name": "Gephi", "level": "Intermediate", "icon": "gephi-logo.svg"},
+      {"name": "GitHub Actions", "level": "Advanced"},
+      {"name": "Expo", "level": "Advanced"}
+    ],
+    "frontend_frameworks": [
+      {"name": "React.js", "level": "Advanced", "icon": "react-logo.svg"},
+      {"name": "Streamlit", "level": "Advanced", "icon": "streamlit-logo.svg"},
+      {"name": "Django", "level": "Advanced", "icon": "django-logo.svg"}
+    ],
+    "data_visualization": [
+      {"name": "Power BI", "level": "Advanced", "icon": "powerbi-logo.svg"},
+      {"name": "Tableau", "level": "Advanced", "icon": "tableau-logo.svg"},
+      {"name": "Matplotlib", "level": "Advanced", "icon": "matplotlib-logo.svg"},
+      {"name": "Seaborn", "level": "Advanced", "icon": "seaborn-logo.svg"}
+    ]
+  },
+  "areas_of_expertise": [
+    {
+      "category": "GenAI & LLM Technologies",
+      "skills": [
+        "Microsoft GraphRAG", "LangChain", "LangGraph", "RAG Models", "LLM fine-tuning", "Hugging Face", "Custom RAG Solutions", "Knowledge Graphs", "Agentic Workflows"
+      ]
+    },
+    {
+      "category": "Programming Languages",
+      "skills": [
+        "Python", "SQL", "JavaScript", "Java", "C/C++", "Golang"
+      ]
+    },
+    {
+      "category": "AI/ML Frameworks",
+      "skills": [
+        "PyTorch", "TensorFlow", "Keras", "Scikit-Learn", "XGBoost"
+      ]
+    },
+    {
+      "category": "Cloud & Infrastructure",
+      "skills": [
+        "AWS Lambda", "AWS S3", "AWS EC2", "AWS Rekognition", "Docker", "Kubernetes", "Linux/Unix"
+      ]
+    },
+    {
+      "category": "Data & Analytics",
+      "skills": [
+        "Power BI", "Tableau", "Neo4j", "Gephi", "React.js"
+      ]
+    },
+    {
+      "category": "Specialised Tools",
+      "skills": [
+        "Yellow.ai", "ARIMA", "Random Forest"
+      ]
+    },
+    {
+      "category": "Expertise",
+      "skills": [
+        "Generative AI", "Machine Learning", "Deep Learning", "Natural Language Processing", "Data Modelling", "Data Analysis", "Data Visualisation", "Embedded ML"
+      ]
+    }
+  ],
+  "personality_traits": [
+    "Entrepreneurial and client-facing AI engineer with a passion for building scalable GenAI solutions.",
+    "Results-driven leader with a proven track record of zero-to-revenue growth.",
+    "Technical innovator focused on practical, profitable AI implementations.",
+    "Collaborative team builder who scales engineering organizations.",
+    "Cost-conscious architect who optimizes for both performance and budget."
+  ],
+  "career_highlights": [
+    {
+      "achievement": "Led 2 AI startups from concept to revenue generation",
+      "context": "HyperWater.ai and RoomieHub - both profitable AI solutions",
+      "impact": "Demonstrated ability to turn AI concepts into business value"
+    },
+    {
+      "achievement": "Reduced operational costs by 85% while maintaining high accuracy",
+      "context": "HyperWater.ai - multimodal RAG system for construction document analysis",
+      "impact": "Enabled scalable, cost-effective document analysis"
+    },
+    {
+      "achievement": "Generated £150k+ in advertising revenue for RoomieHub within 8 months",
+      "context": "RoomieHub - technical leadership and business model validation",
+      "impact": "Proved business model viability and platform growth"
+    }
+  ],
+  "ai_skill_matcher_keywords": {
+    "startup_leadership": ["startup", "leadership", "team", "growth", "revenue", "zero to one"],
+    "generative_ai": ["gen ai", "generative", "llm", "gpt", "chatbot", "ai solutions"],
+    "rag_systems": ["rag", "retrieval", "document", "search", "knowledge", "graphrag", "custom rag"],
+    "cost_optimization": ["cost", "optimization", "efficiency", "budget", "scaling", "performance"],
+    "team_management": ["team", "management", "leadership", "agile", "collaboration", "engineers"],
+    "aws_cloud": ["aws", "cloud", "lambda", "serverless", "s3", "infrastructure", "rekognition", "ec2"],
+    "machine_learning": ["ml", "machine learning", "models", "training", "algorithms", "prediction", "deep learning"],
+    "data_science": ["data", "analytics", "visualization", "insights", "analysis", "science", "modelling"],
+    "full_stack": ["full stack", "frontend", "backend", "react", "python", "end to end"],
+    "consulting": ["consulting", "freelance", "advisor", "strategy", "implementation", "solutions"]
+  }
+}

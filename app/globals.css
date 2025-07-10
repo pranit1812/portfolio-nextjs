@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes blob1 { 0%,100%{transform:translate(0,0);} 50%{transform:translate(40px,60px);} }
+@keyframes blob2 { 0%,100%{transform:translate(0,0);} 50%{transform:translate(-60px,40px);} }
+@keyframes blob3 { 0%,100%{transform:translate(0,0);} 50%{transform:translate(60px,-40px);} }
+@keyframes blob4 { 0%,100%{transform:translate(0,0);} 50%{transform:translate(-40px,-60px);} }
+.animate-blob1 { animation: blob1 18s ease-in-out infinite; }
+.animate-blob2 { animation: blob2 22s ease-in-out infinite; }
+.animate-blob3 { animation: blob3 20s ease-in-out infinite; }
+.animate-blob4 { animation: blob4 24s ease-in-out infinite; }
+
+/* Path animation for timeline */
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 1500;
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dasharray: 1500, 1500;
+    stroke-dashoffset: 0;
+  }
+}
+
+.path-animation {
+  stroke-dasharray: 1500;
+  stroke-dashoffset: 1500;
+  animation: dash 3s ease-in-out forwards;
+}
