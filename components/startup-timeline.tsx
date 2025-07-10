@@ -157,8 +157,7 @@ export default function StartupTimeline({ experiences, education = [] }: Startup
                 </h3>
                 <h4 className="text-lg text-blue-600 mb-3 font-medium">{item.title}</h4>
                 
-                {/* Business Impact */}
-                <p className="text-gray-800 mb-4 leading-relaxed font-medium">{item.businessImpact}</p>
+                {/* Business Impact */}                <p className="text-gray-800 mb-4 leading-relaxed font-medium">{item.businessImpact}</p>
                   
                 {/* Key Metrics Grid */}
                 {item.keyMetrics.length > 0 && (

@@ -59,7 +59,7 @@ export function GlassCard({
         borderGlow && 'before:absolute before:inset-0 before:-z-10 before:rounded-xl before:bg-gradient-to-r before:from-blue-600/20 before:via-teal-500/20 before:to-green-500/20 before:blur-xl before:opacity-70',
         onClick && 'cursor-pointer',
         // Text readability improvements
-        '[&_p]:drop-shadow-sm [&_h1]:drop-shadow-sm [&_h2]:drop-shadow-sm [&_h3]:drop-shadow-sm [&_span]:drop-shadow-sm',
+
         className
       )}
       whileHover={interactive ? { scale: 1.02, transition: { duration: 0.2 } } : {}}

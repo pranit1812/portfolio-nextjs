@@ -25,11 +25,11 @@ export default function JourneyPage() {
           intensity="medium" 
           borderGlow
         >
-          <StartupTimeline
-            experiences={portfolioData.experience}
-            education={portfolioData.education}
-          />
-        </GlassCard>
+        <StartupTimeline
+          experiences={portfolioData.experience}
+          education={portfolioData.education}
+        />
+      </GlassCard>
       </div>
     </div>
   );
