@@ -11,7 +11,7 @@ export default function JourneyPage() {
       <div className="w-full max-w-6xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-8 md:mb-12">
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-blue-700 via-teal-600 to-green-600 bg-clip-text text-transparent">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-gray-900 via-purple-700 to-gray-900 bg-clip-text text-transparent">
             My Journey
           </h1>
           <p className="text-base md:text-lg lg:text-xl text-gray-800 max-w-3xl mx-auto leading-relaxed font-medium">

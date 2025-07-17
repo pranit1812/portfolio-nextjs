@@ -69,6 +69,14 @@ export default function ChatWidget() {
           setRemainingQuestions(0);
           throw new Error(error.error || 'Rate limit exceeded');
         }
+        // Handle security responses (400 status) gracefully - just show the message
+        if (response.status === 400) {
+          setMessages(prev => [...prev, {
+            role: 'assistant',
+            content: error.error || 'Invalid question or topic.'
+          }]);
+          return; // Don't throw an error for security responses
+        }
         throw new Error(error.error || 'Failed to get response');
       }
 
