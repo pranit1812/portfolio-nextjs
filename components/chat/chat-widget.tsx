@@ -140,26 +140,30 @@ export default function ChatWidget() {
     <>
       {/* Chat Toggle Button */}
       <motion.button
-        className="fixed bottom-6 right-6 z-50 p-3 sm:p-4 rounded-full bg-blue-600 text-white shadow-xl hover:bg-blue-700 transition-colors ring-4 ring-blue-300 ring-opacity-50"
+        className="fixed bottom-6 right-6 z-50 p-4 sm:p-5 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-2xl hover:from-purple-700 hover:to-blue-700 transition-all duration-300 ring-4 ring-purple-300 ring-opacity-50"
         onClick={toggleChat}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
+        whileHover={{ scale: 1.15 }}
+        whileTap={{ scale: 0.9 }}
         initial={{ scale: 1 }}
         animate={{ 
-          scale: [1, 1.05, 1],
+          scale: [1, 1.08, 1],
           boxShadow: [
-            '0 10px 25px -5px rgba(37, 99, 235, 0.5)',
-            '0 20px 25px -5px rgba(37, 99, 235, 0.6)',
-            '0 10px 25px -5px rgba(37, 99, 235, 0.5)'
+            '0 15px 35px -5px rgba(147, 51, 234, 0.4)',
+            '0 25px 35px -5px rgba(147, 51, 234, 0.6)',
+            '0 15px 35px -5px rgba(147, 51, 234, 0.4)'
           ]
         }}
         transition={{ 
           repeat: Infinity, 
-          duration: 2,
+          duration: 2.5,
           ease: "easeInOut" 
         }}
       >
-        {isOpen ? <X size={24} /> : <MessageCircle size={24} />}
+        {isOpen ? (
+          <X size={32} className="drop-shadow-sm" />
+        ) : (
+          <Brain size={32} className="drop-shadow-sm animate-pulse" />
+        )}
       </motion.button>
 
       {/* Chat Window */}
