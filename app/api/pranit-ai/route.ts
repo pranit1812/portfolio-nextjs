@@ -108,15 +108,15 @@ const SECURITY_CONFIG = {
   
   // Forbidden topics/requests
   FORBIDDEN_PATTERNS: [
-    // Personal information of others
-    /tell\s+me\s+about\s+(?!pranit)/i,
-    /who\s+is\s+(?!pranit)/i,
-    /information\s+about\s+(?!pranit)/i,
+    // Personal information of others (allow any variation of Pranit's name)
+    /tell\s+me\s+about\s+(?!pranit['s]?\s*(sehgal)?)/i,
+    /who\s+is\s+(?!pranit['s]?\s*(sehgal)?)/i,
+    /information\s+about\s+(?!pranit['s]?\s*(sehgal)?)/i,
     
     // General knowledge questions
     /what\s+is\s+(the\s+)?(capital|population|president)/i,
-    /how\s+to\s+(make|cook|build|create)(?!\s+(a\s+)?(portfolio|resume|contact))/i,
-    /explain\s+(quantum|physics|chemistry|biology)(?!\s+in\s+pranit)/i,
+    /how\s+to\s+(make|cook|build|create)(?!\s+(a\s+)?(portfolio|resume|contact|.*pranit))/i,
+    /explain\s+(quantum|physics|chemistry|biology)(?!\s+(in\s+)?pranit['s]?\s*(sehgal)?)/i,
     
     // Current events
     /news|current\s+events|today's\s+date|weather/i,
@@ -341,6 +341,31 @@ function simulateEmbedding(text: string): number[] {
 function performSecurityCheck(question: string): { allowed: boolean; reason?: string; sanitized?: string } {
   const normalizedQuestion = question.toLowerCase().trim();
   
+  // Check for "hire him" questions first (implementation details about Pranit's work)
+  const hireHimPatterns = [
+    /how\s+to\s+(build|create|implement|make|develop)\s+.*pranit/i,
+    /how\s+did\s+pranit\s+(build|create|implement|make|develop)/i,
+    /show\s+me\s+how\s+to\s+(build|create|implement)\s+.*like\s+pranit/i,
+    /teach\s+me\s+how\s+to\s+(build|create|implement)\s+.*pranit/i,
+    /steps\s+to\s+(build|create|implement)\s+.*like\s+pranit/i,
+  ];
+  
+  for (const pattern of hireHimPatterns) {
+    if (pattern.test(question)) {
+      console.warn('SECURITY ALERT: Implementation question attempt', {
+        pattern: pattern.toString(),
+        question: question.substring(0, 100),
+        timestamp: new Date().toISOString(),
+        type: 'hire_him_question'
+      });
+      
+      return {
+        allowed: false,
+        reason: 'Well, you have to hire him for that! 😉 I can tell you about Pranit\'s experience and achievements, but for implementation details, you\'ll need to bring him on board. Want to know about his contact information?'
+      };
+    }
+  }
+  
   // Check for prompt injection patterns
   for (const pattern of SECURITY_CONFIG.INJECTION_PATTERNS) {
     if (pattern.test(question)) {
@@ -354,26 +379,42 @@ function performSecurityCheck(question: string): { allowed: boolean; reason?: st
       
       return {
         allowed: false,
-        reason: 'This appears to be a prompt injection attempt. Please ask questions about Pranit\'s background, experience, or portfolio.'
+        reason: 'Ha Ha, you thought you could prompt inject? 😉 I\'m an AI Developer - I add safety to my apps! Ask me about Pranit\'s experience instead.'
       };
     }
   }
   
-  // Check for forbidden patterns
+  // Check for forbidden patterns (general knowledge, off-topic, etc.)
   for (const pattern of SECURITY_CONFIG.FORBIDDEN_PATTERNS) {
     if (pattern.test(question)) {
+      // Determine if it's a general knowledge question or about other people
+      const isGeneralKnowledge = /what\s+is\s+(the\s+)?(capital|population|president)|how\s+to\s+(make|cook|build|create)|explain\s+(quantum|physics|chemistry|biology)/i.test(question);
+      const isAboutOthers = /tell\s+me\s+about\s+(?!pranit)|who\s+is\s+(?!pranit)|information\s+about\s+(?!pranit)/i.test(question);
+      
       // Log off-topic attempt
       console.warn('SECURITY ALERT: Off-topic question attempt', {
         pattern: pattern.toString(),
         question: question.substring(0, 100),
         timestamp: new Date().toISOString(),
-        type: 'off_topic'
+        type: isGeneralKnowledge ? 'general_knowledge' : isAboutOthers ? 'other_people' : 'off_topic'
       });
       
-      return {
-        allowed: false,
-        reason: 'I can only answer questions about Pranit Sehgal\'s background, experience, and portfolio. Please ask something related to his professional information.'
-      };
+      if (isGeneralKnowledge) {
+        return {
+          allowed: false,
+          reason: 'This chatbot only answers questions about Pranit, his technical background, projects, and skills. Try asking "What is Pranit\'s experience with AI?"'
+        };
+      } else if (isAboutOthers) {
+        return {
+          allowed: false,
+          reason: 'I can only share information about Pranit Sehgal\'s professional background. Ask me about his projects, experience, or skills!'
+        };
+      } else {
+        return {
+          allowed: false,
+          reason: 'I can only answer questions about Pranit Sehgal\'s background, experience, and portfolio. Please ask something related to his professional information.'
+        };
+      }
     }
   }
   

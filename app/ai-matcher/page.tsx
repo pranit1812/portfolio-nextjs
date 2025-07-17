@@ -24,7 +24,10 @@ export default function AiMatcherPage() {
             </h1>
             
             <p className="text-xl text-gray-800 max-w-3xl mx-auto font-medium">
-              Ask me anything about my experience, projects, or skills and get detailed answers powered by RAG technology.
+              Ask me about Pranit's experience, projects, or skills and get detailed answers powered by RAG technology.
+            </p>
+            <p className="text-sm text-gray-600 max-w-2xl mx-auto mt-4">
+              Try questions like: "What is Pranit's experience with AI?" or "Tell me about Pranit's startup projects"
             </p>
           </div>
           

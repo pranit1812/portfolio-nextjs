@@ -122,10 +122,10 @@ export default function ChatWidget() {
 
   // Sample questions
   const sampleQuestions = [
-    "What is your experience with GraphRAG?",
-    "How did you reduce AI processing costs by 8x?",
-    "Tell me about your startup leadership experience",
-    "What AI frameworks have you worked with?"
+    "What is Pranit's experience with GraphRAG?",
+    "Tell me about Pranit's startup leadership experience",
+    "What are Pranit's main technical skills?",
+    "Where did Pranit study and what degree does he have?"
   ];
 
   return (
@@ -204,7 +204,7 @@ export default function ChatWidget() {
                     <div>
                       <h3 className="text-blue-800 font-medium text-sm">Hi, I'm Pranit.AI!</h3>
                       <p className="text-gray-600 text-xs">
-                        Ask me anything about Pranit's experience, projects, or skills.
+                        Ask me questions about Pranit's background. Try: "What is Pranit's experience with..."
                       </p>
                     </div>
                   </div>
